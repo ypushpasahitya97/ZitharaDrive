@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+table {
+  font: 1em sans-serif;
+  font-size: x-small;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+/* th {
+  background-color: gray;
+  
+} */
+
+.font-custom {
+  font-family: 'Arial', sans-serif; /* Replace 'Arial' with your desired font family */
+  font-size: 14px; /* Adjust font size as needed */
+  font-weight: 400; /* Adjust font weight as needed */
+}
