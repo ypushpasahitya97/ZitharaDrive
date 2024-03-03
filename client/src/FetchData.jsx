@@ -22,9 +22,7 @@ const FetchData = () => {
         LOCATION: '',
     });
     const [isFormCollapsed, setIsFormCollapsed] = useState(true);
-    const [originalData, setOriginalData] = useState([]);
     const [darkMode, setDarkMode] = useState(true);
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +33,6 @@ const FetchData = () => {
                     CREATED_AT: format(new Date(item.CREATED_AT), 'yyyy-MM-dd HH:mm:ss'),
                 }));
                 setData(formattedData);
-                setOriginalData(formattedData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -74,12 +71,13 @@ const FetchData = () => {
                 Header: 'DELETE',
                 Cell: ({ row }) => (
                     <button onClick={() => handleDelete(row.index)} style={{padding: '0', background: 'none', border: 'none'}}>
-        <DeleteIcon style={deleteIconStyle} />
-    </button>
+                        <DeleteIcon style={deleteIconStyle} />
+                    </button>
                 ),
             },
         ],
-        []
+         // eslint-disable-next-line 
+        [] 
     );
 
     const {
@@ -96,7 +94,6 @@ const FetchData = () => {
         pageCount,
         state: { pageIndex, pageSize },
         setPageSize,
-        preGlobalFilteredRows,
         setGlobalFilter,
     } = useTable(
         {
@@ -115,9 +112,13 @@ const FetchData = () => {
     }, [searchTerm, setGlobalFilter]);
 
     const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
+        const inputValue = e.target.value;
+        if (/^[a-zA-Z]+$/.test(inputValue) || inputValue === '') {
+            setSearchTerm(inputValue);
+        } else {
+            console.error('Search input must contain only letters');
+        }
     };
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewRowData({
@@ -145,9 +146,7 @@ const FetchData = () => {
     const toggleForm = () => {
         setIsFormCollapsed(!isFormCollapsed);
         if (!isFormCollapsed) {
-            
-            setData(originalData);
-            setSearchTerm(''); 
+            setSearchTerm('');
         }
     };
 
@@ -173,13 +172,11 @@ const FetchData = () => {
     const deleteIconStyle = {
         fontSize: 16, 
     };
-    
 
     return (
         <div className={`w-full px-24 mx-auto mt-0 py-0 text-white fill-gray-400 ${darkMode ? 'dark' : 'light'}`}>
             {/* Search */}
             <div className="flex items-center justify-between mb-4">
-
                 <div className="sw-full flex items-center gap-1 text-sm">
                     <SearchIcon />
                     <input
@@ -271,7 +268,6 @@ const FetchData = () => {
                         </tr>
                     ))}
                 </thead>
-
                 <tbody {...getTableBodyProps()}>
                     {page.map((row, index) => {
                         prepareRow(row);

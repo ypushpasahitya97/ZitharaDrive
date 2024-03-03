@@ -6,5 +6,5 @@ CREATE TABLE "customer" (
     "AGE" varchar(255), 
     "PHONE" varchar(255), 
     "LOCATION" varchar(255), 
-    "CREATED_AT" varchar(255)
+    "CREATED_AT" Timestamp,
 );
