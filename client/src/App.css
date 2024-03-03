@@ -15,13 +15,77 @@ th, td {
   text-align: left;
 }
 
-/* th {
-  background-color: gray;
-  
-} */
 
 .font-custom {
   font-family: 'Arial', sans-serif; /* Replace 'Arial' with your desired font family */
   font-size: 14px; /* Adjust font size as needed */
   font-weight: 400; /* Adjust font weight as needed */
+}
+
+/* Dark mode styles */
+.dark {
+  /* Dark mode styles */
+  background-color: #1f2937;
+  color: white;
+}
+
+.dark-button {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.light {
+  /* Light mode styles */
+  background-color: white;
+  color: black; /* Set font color to black */
+}
+
+
+.light-button {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.light th {
+  background-color: rgb(175, 173, 173); /* Set background color of table head to gray */
+  color: black;
+}
+
+.light td {
+  /* Set background color to white for table data in light mode */
+  background-color: white;
+}
+
+.light .MuiSvgIcon-root {
+  /* Set icon color to black in light mode */
+  color: black !important;
+}
+
+.light .add-icon {
+  /* Set icon color to black in light mode */
+  color: black !important;
+}
+
+
+.dark .table-row-even {
+  background-color: #2d2d2d;
+}
+
+.dark .show-size {
+  background-color: black; /* Set the background color to white */
+  color: white; /* Set the font color to white */
+}
+
+.light .show-size {
+  background-color: white; /* Set the background color to white */
+  color: black; /* Set the font color to white */
+}
+
+.light .lst {
+  background-color: white; /* Set the background color to white */
+  color: black; /* Set the font color to white */
+}
+
+.light .add-button {
+  color: black;
 }

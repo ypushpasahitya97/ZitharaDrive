@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PostAddIcon from '@mui/icons-material/AddBox';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { format } from 'date-fns';
 import { useTable, useFilters, useGlobalFilter, usePagination, useSortBy } from 'react-table';
 import { saveAs } from 'file-saver'; 
 import { SearchIcon } from './components/SearchIcon';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-// 
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const FetchData = () => {
     const [data, setData] = useState([]);
@@ -21,6 +23,8 @@ const FetchData = () => {
     });
     const [isFormCollapsed, setIsFormCollapsed] = useState(true);
     const [originalData, setOriginalData] = useState([]);
+    const [darkMode, setDarkMode] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -65,6 +69,14 @@ const FetchData = () => {
             {
                 Header: 'CREATED_AT',
                 accessor: 'CREATED_AT',
+            },
+            {
+                Header: 'DELETE',
+                Cell: ({ row }) => (
+                    <button onClick={() => handleDelete(row.index)} style={{padding: '0', background: 'none', border: 'none'}}>
+        <DeleteIcon style={deleteIconStyle} />
+    </button>
+                ),
             },
         ],
         []
@@ -126,6 +138,10 @@ const FetchData = () => {
         });
     };
 
+    const handleDelete = (rowIndex) => {
+        setData(prevData => prevData.filter((_, index) => index !== rowIndex));
+    };
+
     const toggleForm = () => {
         setIsFormCollapsed(!isFormCollapsed);
         if (!isFormCollapsed) {
@@ -153,8 +169,17 @@ const FetchData = () => {
         saveAs(blob, 'customer_data.csv');
     };
 
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    };
+
+    const deleteIconStyle = {
+        fontSize: 16, // Adjust the font size as needed
+    };
+    
+
     return (
-        <div className='w-full px-24 mx-auto mt-0 py-0 text-white fill-gray-400 '>
+        <div className={`w-full px-24 mx-auto mt-0 py-0 text-white fill-gray-400 ${darkMode ? 'dark' : 'light'}`}>
             {/* Search */}
             <div className="flex items-center justify-between mb-4">
 
@@ -167,7 +192,7 @@ const FetchData = () => {
                         placeholder="Search ..."
                     />
                 </div>
-                <div className="flex items-center gap-2 ">
+                <div className="flex items-center gap-2">
                     <button onClick={toggleForm} className="flex items-center text-white underline cursor-pointer gap-1 mr-2">
                         <span>Add
                         <PostAddIcon fontSize="small" /></span>
@@ -175,7 +200,9 @@ const FetchData = () => {
                     <button onClick={downloadCSV} className="flex items-center text-white underline cursor-pointer gap-1">
                        |  <CloudDownloadIcon className='ml-2 mr-2'/> 
                     </button>
-                    {/* <FilterMenu/> */}
+                    <button onClick={toggleDarkMode} className="flex items-center text-white underline cursor-pointer gap-1">
+                       |  {darkMode ? <Brightness7Icon className='ml-2 mr-2'/> : <Brightness4Icon className='ml-2 mr-2'/>}
+                    </button>
                 </div>
             </div>
             {!isFormCollapsed && (
@@ -211,7 +238,7 @@ const FetchData = () => {
                             value={newRowData.LOCATION}
                             onChange={handleInputChange}
                             placeholder="Location"
-                            className="p-2 mb-2 mr-2 bg-transparent outline-none border-b-2 border-gray-500"
+                            className="p-2 mb-2 mr-2 bg-transparent outline-none border-b-2 border-indigo-500"
                         />
                     </div>
                     <div>
@@ -224,7 +251,7 @@ const FetchData = () => {
             <table {...getTableProps()} className='bg-gray-200 w-full  text-xs font-sans rounded overflow-hidden'>
                 <thead className='bg-indigo-600'>
                     <tr>
-                        <th colSpan={6} className='py-2 px-5 text-xl text-white font-bold bg-gray-600'>
+                        <th colSpan={7} className='py-2 px-5 text-xl text-white font-bold bg-gray-600'>
                             Customer List
                         </th>
                     </tr>
@@ -273,7 +300,7 @@ const FetchData = () => {
                 </span>
                 <input
                     type="number"
-                    className="p-1 bg-black border border-gray-300 px-2 w-16 text-center"
+                    className="lst p-1 bg-black border border-gray-300 px-2 w-16 text-center"
                     value={pageIndex + 1}
                     onChange={(e) => {
                         const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
@@ -281,10 +308,9 @@ const FetchData = () => {
                     }}
                 />
                 <select
-                    className="p-1 border border-gray-300 px-2 disabled:opacity-30"
+                    className="p-1 border border-gray-300 px-2 disabled:opacity-30 show-size"
                     value={pageSize}
                     onChange={(e) => setPageSize(Number(e.target.value))}
-                    style={{ backgroundColor: 'black', color: 'white' }}
                 >
                     {[20, 40, 60].map((size) => (
                         <option
