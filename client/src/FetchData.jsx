@@ -8,8 +8,7 @@ import { useTable, useFilters, useGlobalFilter, usePagination, useSortBy } from 
 import { saveAs } from 'file-saver'; 
 import { SearchIcon } from './components/SearchIcon';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import FilterMenu from './components/FilterMenu';
-
+// 
 
 const FetchData = () => {
     const [data, setData] = useState([]);
@@ -176,7 +175,7 @@ const FetchData = () => {
                     <button onClick={downloadCSV} className="flex items-center text-white underline cursor-pointer gap-1">
                        |  <CloudDownloadIcon className='ml-2 mr-2'/> 
                     </button>
-                    <FilterMenu/>
+                    {/* <FilterMenu/> */}
                 </div>
             </div>
             {!isFormCollapsed && (
