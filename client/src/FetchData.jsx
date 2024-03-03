@@ -9,8 +9,9 @@ import { useTable, useFilters, useGlobalFilter, usePagination, useSortBy } from 
 import { saveAs } from 'file-saver'; 
 import { SearchIcon } from './components/SearchIcon';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
+import NightsStayOutlinedIcon from '@mui/icons-material/NightsStayOutlined';
+
 
 const FetchData = () => {
     const [data, setData] = useState([]);
@@ -187,7 +188,7 @@ const FetchData = () => {
                     />
                 </div>
                 <div className="flex items-center gap-2">
-                    <button onClick={toggleForm} className="flex items-center text-white underline cursor-pointer gap-1 mr-2">
+                    <button onClick={toggleForm} className="add-button flex items-center text-white underline cursor-pointer gap-1 mr-2">
                         <span>Add
                         <PostAddIcon fontSize="small" /></span>
                     </button>
@@ -195,8 +196,9 @@ const FetchData = () => {
                        |  <CloudDownloadIcon className='ml-2 mr-2'/> 
                     </button>
                     <button onClick={toggleDarkMode} className="flex items-center text-white underline cursor-pointer gap-1">
-                       |  {darkMode ? <Brightness7Icon className='ml-2 mr-2'/> : <Brightness4Icon className='ml-2 mr-2'/>}
+                        |  {darkMode ? <NightsStayOutlinedIcon className='ml-2 mr-2'/> : <WbSunnyOutlinedIcon className='ml-2 mr-2'/>}
                     </button>
+
                 </div>
             </div>
             {!isFormCollapsed && (
