@@ -145,9 +145,9 @@ const FetchData = () => {
     const toggleForm = () => {
         setIsFormCollapsed(!isFormCollapsed);
         if (!isFormCollapsed) {
-            // Reset data to original data when collapsing the form
+            
             setData(originalData);
-            setSearchTerm(''); // Clear search term
+            setSearchTerm(''); 
         }
     };
 
@@ -161,11 +161,8 @@ const FetchData = () => {
     };
 
     const downloadCSV = () => {
-        // Convert data to CSV format
         const csvData = data.map(row => Object.values(row).join(',')).join('\n');
-        // Create a Blob with the CSV data
         const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8' });
-        // Save the Blob as a file
         saveAs(blob, 'customer_data.csv');
     };
 
@@ -174,7 +171,7 @@ const FetchData = () => {
     };
 
     const deleteIconStyle = {
-        fontSize: 16, // Adjust the font size as needed
+        fontSize: 16, 
     };
     
 

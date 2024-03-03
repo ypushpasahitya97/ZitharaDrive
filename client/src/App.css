@@ -17,14 +17,12 @@ th, td {
 
 
 .font-custom {
-  font-family: 'Arial', sans-serif; /* Replace 'Arial' with your desired font family */
-  font-size: 14px; /* Adjust font size as needed */
-  font-weight: 400; /* Adjust font weight as needed */
+  font-family: 'Arial', sans-serif; 
+  font-size: 14px; 
+  font-weight: 400; 
 }
 
-/* Dark mode styles */
 .dark {
-  /* Dark mode styles */
   background-color: #1f2937;
   color: white;
 }
@@ -35,9 +33,8 @@ th, td {
 }
 
 .light {
-  /* Light mode styles */
   background-color: white;
-  color: black; /* Set font color to black */
+  color: black; 
 }
 
 
@@ -47,22 +44,20 @@ th, td {
 }
 
 .light th {
-  background-color: rgb(175, 173, 173); /* Set background color of table head to gray */
+  background-color: rgb(175, 173, 173); 
   color: black;
 }
 
 .light td {
-  /* Set background color to white for table data in light mode */
   background-color: white;
 }
 
 .light .MuiSvgIcon-root {
-  /* Set icon color to black in light mode */
   color: black !important;
 }
 
 .light .add-icon {
-  /* Set icon color to black in light mode */
+  
   color: black !important;
 }
 
@@ -72,18 +67,18 @@ th, td {
 }
 
 .dark .show-size {
-  background-color: black; /* Set the background color to white */
-  color: white; /* Set the font color to white */
+  background-color: black;
+  color: white; 
 }
 
 .light .show-size {
-  background-color: white; /* Set the background color to white */
-  color: black; /* Set the font color to white */
+  background-color: white; 
+  color: black; 
 }
 
 .light .lst {
-  background-color: white; /* Set the background color to white */
-  color: black; /* Set the font color to white */
+  background-color: white;
+  color: black;
 }
 
 .light .add-button {
